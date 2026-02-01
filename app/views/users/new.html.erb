@@ -1,19 +1,19 @@
-<form action="/users" method="post" data-turbo="true" accept-charset="UTF-8">
-  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-  <div>
-    <label for="user_username">Username</label>
-    <input type="text" name="user[username]" id="user_username" required>
-  </div>
-  <div>
-    <label for="user_email">Email</label>
-    <input type="email" name="user[email]" id="user_email" required>
-  </div>
-  <div>
-    <label for="user_password">Password</label>
-    <input type="password" name="user[password]" id="user_password" required>
-  </div>
-  <input type="submit" name="commit" value="Create User" data-disable-with="Create User">
-</form>
+<!-- <form action="/users" method="post" data-turbo="true" accept-charset="UTF-8"> -->
+<!--   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>"> -->
+<!--   <div> -->
+<!--     <label for="user_username">Username</label> -->
+<!--     <input type="text" name="user[username]" id="user_username" required> -->
+<!--   </div> -->
+<!--   <div> -->
+<!--     <label for="user_email">Email</label> -->
+<!--     <input type="email" name="user[email]" id="user_email" required> -->
+<!--   </div> -->
+<!--   <div> -->
+<!--     <label for="user_password">Password</label> -->
+<!--     <input type="password" name="user[password]" id="user_password" required> -->
+<!--   </div> -->
+<!--   <input type="submit" name="commit" value="Create User" data-disable-with="Create User"> -->
+<!-- </form> -->
 
 <!-- <%# <%= form_tag({controller: "users", action: "create"}, method: "post", data: {turbo: "false"}) do %> %> -->
   <!-- <div> -->
@@ -31,3 +31,18 @@
 <!--   <%= submit_tag("Create User") %> -->
 <%# end %>
 
+<%= form_with model: @user do |form| %>
+  <div>
+    <%= form.label :username, "Your user name here" %>
+    <%= form.text_field :username %>
+  </div>
+  <div>
+    <%= form.label :email %>
+    <%= form.email_field :email, placeholder: "example@example.com" %>
+  </div>
+  <div>
+    <%= form.label :password %>
+    <%= form.password_field :password %>
+  </div>
+  <%= form.submit %>
+<% end %>

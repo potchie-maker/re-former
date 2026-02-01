@@ -1,5 +1,8 @@
 class UsersController < ApplicationController
   def new
+    # add default value to username field while allowing for render on
+    # failed submit to repopulate properly
+    @user = User.new(username: "Bon Jovi")
   end
 
   def create
