@@ -1,8 +1,12 @@
 class UsersController < ApplicationController
+  before_action :set_user, only: %i[ edit update ]
   def new
     # add default value to username field while allowing for render on
     # failed submit to repopulate properly
     @user = User.new(username: "Bon Jovi")
+  end
+
+  def edit
   end
 
   def create
@@ -16,7 +20,19 @@ class UsersController < ApplicationController
     end
   end
 
+  def update
+    if @user.update(user_params)
+      redirect_to user_path
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
   private
+
+  def set_user
+    @user = User.find(params.expect(:id))
+  end
 
   def user_params
     params.expect(user: [:username, :email, :password])
