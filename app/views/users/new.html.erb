@@ -1,16 +1,33 @@
-<form action="/users" method="post" data-turbo="false" accept-charset="UTF-8">
-  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+<!-- <form action="/users" method="post" data-turbo="false" accept-charset="UTF-8"> -->
+<!--   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>"> -->
+<!--   <div> -->
+<!--     <label for="user_username">Username</label> -->
+<!--     <input type="text" name="user[username]" id="user_username" required> -->
+<!--   </div> -->
+<!--   <div> -->
+<!--     <label for="user_email">Email</label> -->
+<!--     <input type="email" name="user[email]" id="user_email" required> -->
+<!--   </div> -->
+<!--   <div> -->
+<!--     <label for="user_password">Password</label> -->
+<!--     <input type="password" name="user[password]" id="user_password" required> -->
+<!--   </div> -->
+<!--   <input type="submit" name="commit" value="Create User" data-disable-with="Create User"> -->
+<!-- </form> -->
+
+<%= form_tag({controller: "users", action: "create"}, method: "post", data: {turbo: "false"}) do %>
   <div>
-    <label for="user_username">Username</label>
-    <input type="text" name="user[username]" id="user_username" >
+    <%= label_tag("user[username]", "Username") %>
+    <%= text_field_tag("user[username]") %>
   </div>
   <div>
-    <label for="user_email">Email</label>
-    <input type="email" name="user[email]" id="user_email" >
+    <%= label_tag("user[email]", "Email") %>
+    <%= text_field_tag("user[email]") %>
   </div>
   <div>
-    <label for="user_password">Password</label>
-    <input type="password" name="user[password]" id="user_password" >
+    <%= label_tag("user[password]", "Password") %>
+    <%= password_field_tag("user[password]") %>
   </div>
-  <input type="submit" name="commit" value="Create User" data-disable-with="Create User">
-</form>
+  <%= submit_tag("Create User") %>
+<% end %>
+
